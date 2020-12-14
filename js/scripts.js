@@ -1,12 +1,12 @@
 const stream = document.getElementById("stream");
-let thoughts = [];
-var current = newThought();
-let interval = 0;
-
 const video = document.getElementById("bgVideo");
 const visible = document.getElementById("visible");
 const mute = document.getElementById("mute");
 const text = document.getElementById("text");
+
+let thoughts = [];
+var current = newThought();
+let interval = 0;
 
 function newThought() {
   if (current) {
@@ -14,8 +14,7 @@ function newThought() {
     thoughts.push([current, 0.5]); // velocity
   }
   let p = document.createElement("p");
-  p.classList.add("thought");
-  p.classList.add("current");
+  p.classList.add("thought", "current");
   p.style.transform = "translateX(0px)";
   stream.append(p);
   return p;
@@ -36,6 +35,19 @@ document.addEventListener("keydown", event => {
     case 'Tab':
     case 'Escape':
     case 'CapsLock':
+    case 'Dead':
+    case 'F1':
+    case 'F2':
+    case 'F3':
+    case 'F4':
+    case 'F5':
+    case 'F6':
+    case 'F7':
+    case 'F8':
+    case 'F9':
+    case 'F10':
+    case 'F11':
+    case 'F12':
       return;
     case 'Backspace':
       event.preventDefault();
@@ -78,12 +90,14 @@ setInterval(() => {
   }
 }, 10);
 
+// toggles
+
 visible.addEventListener("click", event => {
-  visible.textContent = (text.classList.contains("hidden")) ? "[Hide text]" : "[Show text]";
+  visible.textContent = (text.classList.contains("hidden")) ? "Hide text" : "Show text";
   text.classList.toggle("hidden");
 });
 
 mute.addEventListener("click", event => {
-  mute.textContent = (bgVideo.muted) ? "[Mute]" : "[Unmute]";
+  mute.textContent = (bgVideo.muted) ? "Mute" : "Unmute";
   bgVideo.muted = !bgVideo.muted;
 });
