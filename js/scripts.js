@@ -4,6 +4,32 @@ const visible = document.getElementById("visible");
 const mute = document.getElementById("mute");
 const text = document.getElementById("text");
 
+// https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values
+const KEYS_TO_IGNORE = [
+  // special values
+  "Unidentified",
+  // modifier keys
+  "Alt", "AltGraph", "CapsLock", "Control", "Fn", "FnLock", "Hyper", "Meta", "OS",
+  "NumLock", "Scroll", "ScrollLock", "Shift", "Super", "Symbol", "SymbolLock",
+  // whitespace keys
+  "Enter", "Tab",
+  // navigation keys
+  "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowUp",
+  "Down", "Left", "Right", "Up",
+  "End", "Home", "PageDown", "PageUp",
+  // editing keys
+  "Delete", "Del",
+  // ui keys
+  "ContextMenu", "Apps", "Esc", "Escape", "Find", "Help",
+  // device keys
+  "Eject", "PrintScreen", "PrtScr", "Snapshot",
+  // ime and composition keys
+  "Dead",
+  // function keys
+  "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10",
+  "F11", "F12", "F13", "F14", "F15", "F16", "F17", "F18", "F19", "F20"
+];
+
 let thoughts = [];
 var current = newThought();
 let interval = 0;
@@ -22,45 +48,20 @@ function newThought() {
 
 document.addEventListener("keydown", event => {
   interval = 0;
-  switch (event.key) {
-    case 'Meta':
-    case 'Alt':
-    case 'Shift':
-    case 'Control':
-    case 'ArrowLeft':
-    case 'ArrowRight':
-    case 'ArrowUp':
-    case 'ArrowDown':
-    case 'Enter':
-    case 'Tab':
-    case 'Escape':
-    case 'CapsLock':
-    case 'Dead':
-    case 'F1':
-    case 'F2':
-    case 'F3':
-    case 'F4':
-    case 'F5':
-    case 'F6':
-    case 'F7':
-    case 'F8':
-    case 'F9':
-    case 'F10':
-    case 'F11':
-    case 'F12':
-      return;
-    case 'Backspace':
-      event.preventDefault();
-      event.stopPropagation();
+  let k = event.key;
+  if (KEYS_TO_IGNORE.includes(k)) {
+    return;
+  } else if (k === "Backspace" || k === "Clear" || k === "'" || k == "/") {
+    if (k === "Backspace") {
       current.textContent = current.textContent.substring(0, current.textContent.length - 1);
-      break;
-    case "'": // bypassing browser keyboard shortcuts
-    case '/':
-      event.preventDefault();
-      event.stopPropagation();
-    default:
-      current.textContent += event.key;
-      break;
+    } else if (k === "Clear") {
+      current.textContent = "";
+    } else if (k === "'" || k === "/") {
+      current.textContent += k;
+    }
+    event.preventDefault();
+  } else {
+    current.textContent += event.key;
   }
 });
 
