@@ -1,8 +1,9 @@
 const stream = document.getElementById("stream");
 const video = document.getElementById("bgVideo");
-const visible = document.getElementById("visible");
-const mute = document.getElementById("mute");
+const visibility = document.getElementById("visibility");
 const text = document.getElementById("text");
+const sound = document.getElementById("sound");
+const motion = document.getElementById("motion");
 
 // https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values
 const KEYS_TO_IGNORE = [
@@ -18,9 +19,9 @@ const KEYS_TO_IGNORE = [
   "Down", "Left", "Right", "Up",
   "End", "Home", "PageDown", "PageUp",
   // editing keys
-  "Delete", "Del",
+  "Delete", "Del", "Insert",
   // ui keys
-  "ContextMenu", "Apps", "Esc", "Escape", "Find", "Help",
+  "ContextMenu", "Apps", "Esc", "Escape", "Find", "Help", "Pause", "Play",
   // device keys
   "Eject", "PrintScreen", "PrtScr", "Snapshot",
   // ime and composition keys
@@ -93,12 +94,22 @@ setInterval(() => {
 
 // toggles
 
-visible.addEventListener("click", event => {
-  visible.textContent = (text.classList.contains("hidden")) ? "Hide text" : "Show text";
+visibility.addEventListener("click", event => {
+  visibility.textContent = (text.classList.contains("hidden")) ? "Hide text" : "Show text";
   text.classList.toggle("hidden");
 });
 
-mute.addEventListener("click", event => {
-  mute.textContent = (bgVideo.muted) ? "Mute" : "Unmute";
+sound.addEventListener("click", event => {
+  sound.textContent = (bgVideo.muted) ? "Mute" : "Unmute";
   bgVideo.muted = !bgVideo.muted;
+});
+
+motion.addEventListener("click", event => {
+  if (motion.textContent === "Make still") {
+    bgVideo.pause();
+    motion.textContent = "Allow flow";
+  } else {
+    bgVideo.play();
+    motion.textContent = "Make still";
+  }
 });

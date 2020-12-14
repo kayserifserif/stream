@@ -7,17 +7,18 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <video class="bgVideo" id="bgVideo" autoplay loop muted>
-    <source src="media/water1.mp4" type="video/mp4">
-    Sorry, your browser doesn't support embedded videos.
+  <video class="bgVideo" id="bgVideo" poster="media/water.jpg" autoplay loop muted>
+    <source src="media/water.webm" type="video/webm">
+    <source src="media/water.mp4" type="video/mp4">
+    Sorry! Your browser doesn't support embedded videos.
   </video>
+  <div class="stream" id="stream"></div>
   <div class="overlay">
     <div class="toggles">
       <p>
-        <button class="toggle" id="visible">Hide text</button>
-        <!-- <a href="#" id="visible">[Hide text]</a> -->
-        <button class="toggle" id="mute">Unmute</button>
-        <!-- <a href="#" id="mute">[Unmute]</a> -->
+        <button class="toggle" id="visibility">Hide text</button>
+        <button class="toggle" id="sound">Unmute</button>
+        <button class="toggle" id="motion">Make still</button>
       </p>
     </div>
     <div class="text" id="text">
@@ -40,7 +41,6 @@
       </p>
     </div>
   </div>
-  <div class="stream" id="stream"></div>
   <script src="js/scripts.js"></script>
 </body>
 </html>
