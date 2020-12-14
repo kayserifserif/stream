@@ -4,7 +4,9 @@ var current = newThought();
 let interval = 0;
 
 const video = document.getElementById("bgVideo");
+const visible = document.getElementById("visible");
 const mute = document.getElementById("mute");
+const text = document.getElementById("text");
 
 function newThought() {
   if (current) {
@@ -36,6 +38,8 @@ document.addEventListener("keydown", event => {
     case 'CapsLock':
       return;
     case 'Backspace':
+      event.preventDefault();
+      event.stopPropagation();
       current.textContent = current.textContent.substring(0, current.textContent.length - 1);
       break;
     case "'": // bypassing browser keyboard shortcuts
@@ -67,13 +71,17 @@ setInterval(() => {
       if (x > window.innerWidth) {
         thoughts[i][0].remove();
       } else {
-        // thoughts[i].style.transform = `translateX(${x - 1}px)`;
         thoughts[i][0].style.transform = `translateX(${x + thoughts[i][1]}px)`;
         thoughts[i][1] += 0.01;
       }
     }
   }
 }, 10);
+
+visible.addEventListener("click", event => {
+  visible.textContent = (text.classList.contains("hidden")) ? "[Hide text]" : "[Show text]";
+  text.classList.toggle("hidden");
+});
 
 mute.addEventListener("click", event => {
   mute.textContent = (bgVideo.muted) ? "[Mute]" : "[Unmute]";

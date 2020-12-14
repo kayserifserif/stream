@@ -8,28 +8,34 @@
 </head>
 <body>
   <video class="bgVideo" id="bgVideo" autoplay loop muted>
-    <source src="img/water1.mp4" type="video/mp4">
+    <source src="img/water2.mp4" type="video/mp4">
     Sorry, your browser doesn't support embedded videos.
   </video>
-  <div class="text">
-    <p class="poem">
-      i was walking<br>
-      through the stream<br>
-      of consciousness<br>
-      in the woods.<br>
-      Little minnows<br>
-      tickled my feet<br>
-      like thoughts.
-    </p>
-    <p class="instruction">
-      Type out your stream of consciousness.<br>
+  <div class="overlay">
+    <div class="toggles">
+      <a href="#" id="visible">[Hide text]</a>
       <a href="#" id="mute">[Unmute]</a>
-    </p>
-    <p class="credits">
-      By <a href="https://whykatherine.github.io">Katherine Yang</a><br>
-      Words by <a href="https://www.instagram.com/cam0roper/">Cameron Roper</a><br>
-      Video by <a href="https://www.pexels.com/@abraham-braun-1115122">Abraham Braun</a> from <a href="https://www.pexels.com/photo/a-streaming-shallow-river-breaking-on-the-middle-3045917/">Pexels</a>
-    </p>
+    </div>
+    <div class="text" id="text">
+      <p class="poem">
+        i was walking<br>
+        through the stream<br>
+        of consciousness<br>
+        in the woods.<br>
+        Little minnows<br>
+        tickled my feet<br>
+        like thoughts.
+      </p>
+      <p class="instruction">
+        For when your thoughts are spiralling, churning, dammed up: use this to type out your stream of consciousness. Nothing is recorded; words disappear from the code when they flow off-screen.<br>
+      </p>
+      <p class="credits">
+        By <a href="https://whykatherine.github.io">Katherine Yang</a><br>
+        Words by <a href="https://www.instagram.com/cam0roper/">Cameron Roper</a><br>
+        Video by <a href="https://www.pexels.com/@abraham-braun-1115122">Abraham Braun</a> from <a href="https://www.pexels.com/photo/a-streaming-shallow-river-breaking-on-the-middle-3045917/">Pexels</a>
+      </p>
+    </div>
+  </div>
   <div class="stream" id="stream"></div>
   <script src="js/scripts.js"></script>
 </body>
