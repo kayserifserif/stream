@@ -100,16 +100,16 @@ visibility.addEventListener("click", event => {
 });
 
 sound.addEventListener("click", event => {
-  sound.textContent = (bgVideo.muted) ? "Mute" : "Unmute";
-  bgVideo.muted = !bgVideo.muted;
+  sound.textContent = (video.muted) ? "Mute" : "Unmute";
+  video.muted = !video.muted;
 });
 
 motion.addEventListener("click", event => {
   if (motion.textContent === "Make still") {
-    bgVideo.pause();
+    video.pause();
     motion.textContent = "Allow flow";
   } else {
-    bgVideo.play();
+    video.play();
     motion.textContent = "Make still";
   }
 });

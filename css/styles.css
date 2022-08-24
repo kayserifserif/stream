@@ -73,6 +73,11 @@ a {
   margin-right: 1em;
   font-family: "IM Fell Double Pica PRO", serif;
   font-size: .8em;
+  cursor: pointer;
+}
+
+.toggle:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .text {
@@ -100,5 +105,5 @@ a {
 .thought {
   position: fixed;
   width: 100px;
-  left: 1em;
+  left: 3em;
 }
